@@ -22,6 +22,8 @@ print(corr)
 
 #Because F1 and F2 have inverse dependencies (-1) then we choose only one of them (in this case i choose F1)
 df = df.drop(columns=['f2'])
+
+#Less correlated features gets dropped
 less_corr = ['area','dissimilarity','correlation','contrast','ASM','energy']
 df = df.drop(columns=less_corr)
 X = df.drop(columns=['labels'])
@@ -46,6 +48,8 @@ print(classification_report(y_test,prediction,output_dict=False))
 
 #10 fold cross validation
 from sklearn.model_selection import cross_val_score
+
+
 print('===== K-Fold Cross Evaluation =====')
 _scoring = ['accuracy', 'precision_macro', 'recall_macro', 'f1_macro']
 for i in range(len(_scoring)):
